@@ -48,6 +48,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         btnSignUp.setOnClickListener(this);
         switchToLogin.setOnClickListener(this);
+
+        if (ParseUser.getCurrentUser() != null) {
+            transitionToHome();
+        }
     }
 
     @Override
@@ -96,6 +100,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     FancyToast.makeText(SignUpActivity.this,
                             "Sign Up Successful.", FancyToast.LENGTH_SHORT,
                             FancyToast.SUCCESS, false).show();
+                    transitionToHome();
                 } else {
                     FancyToast.makeText(SignUpActivity.this,
                             e.getMessage(), FancyToast.LENGTH_SHORT,
@@ -113,5 +118,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void transitionToHome() {
+        Intent intent = new Intent(SignUpActivity.this, SocialMediaActivity.class);
+        startActivity(intent);
     }
 }

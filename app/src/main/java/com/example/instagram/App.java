@@ -1,8 +1,10 @@
 package com.example.instagram;
 
 import android.app.Application;
+import android.app.LauncherActivity;
 
 import com.parse.Parse;
+import com.parse.ParseUser;
 
 public class App extends Application {
     @Override

@@ -3,6 +3,7 @@ package com.example.instagram;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -86,6 +87,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     FancyToast.makeText(SignInActivity.this,
                             "Login Successful", FancyToast.LENGTH_SHORT,
                             FancyToast.SUCCESS, false).show();
+                    transitionToHome();
                 } else {
                     FancyToast.makeText(SignInActivity.this,
                             e.getMessage(), FancyToast.LENGTH_SHORT,
@@ -103,5 +105,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void transitionToHome() {
+        Intent intent = new Intent(SignInActivity.this, SocialMediaActivity.class);
+        startActivity(intent);
     }
 }

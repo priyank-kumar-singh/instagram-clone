@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Instagram">
-        <activity android:name=".SignInActivity"></activity>
+        <activity
+            android:name=".SocialMediaActivity"
+            android:theme="@style/Theme.Instagram.NoActionBar"/>
+        <activity android:name=".SignInActivity" />
         <activity android:name=".SignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
