@@ -11,4 +11,14 @@
     <string name="username">Username</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update_info">Update Info</string>
+    <string name="favourite_sport">Favourite Sport</string>
+    <string name="hobbies">Hobbies</string>
+    <string name="profession">Profession</string>
+    <string name="bio">Bio</string>
+    <string name="loading_users">Loading Users</string>
+    <string name="please_wait">Please Wait...</string>
+    <string name="caption">Caption</string>
+    <string name="post_image">Post Image</string>
+    <string name="logout">Logout</string>
 </resources>

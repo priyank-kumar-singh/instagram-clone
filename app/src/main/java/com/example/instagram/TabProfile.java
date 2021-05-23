@@ -1,38 +1,40 @@
 package com.example.instagram;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.fragment.app.Fragment;
+
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class TabProfile extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public static String PROFILE_NAME_KEY = "name";
+    public static String PROFILE_BIO_KEY = "bio";
+    public static String PROFILE_PROFESSION_KEY = "profession";
+    public static String PROFILE_HOBBIES_KEY = "hobbies";
+    public static String PROFILE_FAVSPORT_KEY = "favSport";
 
-    private String mParam1;
-    private String mParam2;
+    private EditText edtProfileName, edtBio, edtProfession, edtHobbies, edtFavSport;
+    private Button btnUpdateInfo;
+
+    private ParseUser currentUser;
 
     public TabProfile() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TabProfile.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TabProfile newInstance(String param1, String param2) {
+    public static TabProfile newInstance() {
         TabProfile fragment = new TabProfile();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,15 +43,72 @@ public class TabProfile extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab_profile, container, false);
+        edtProfileName = view.findViewById(R.id.edtProfileName);
+        edtBio = view.findViewById(R.id.edtProfileBio);
+        edtProfession = view.findViewById(R.id.edtProfileProfession);
+        edtHobbies = view.findViewById(R.id.edtProfileHobbies);
+        edtFavSport = view.findViewById(R.id.edtProfileFavourite);
+
+        btnUpdateInfo = view.findViewById(R.id.btnProfileUpdate);
+
+        currentUser = ParseUser.getCurrentUser();
+
+        Object name, bio, profession, hobbies, favSport;
+        name = currentUser.get(PROFILE_NAME_KEY);
+        bio = currentUser.get(PROFILE_BIO_KEY);
+        profession = currentUser.get(PROFILE_PROFESSION_KEY);
+        hobbies = currentUser.get(PROFILE_HOBBIES_KEY);
+        favSport = currentUser.get(PROFILE_FAVSPORT_KEY);
+
+        edtProfileName.setText(name == null ? "" : name.toString());
+        edtBio.setText(bio == null ? "" : bio.toString());
+        edtProfession.setText(profession == null ? "" : profession.toString());
+        edtHobbies.setText(hobbies == null ? "" : hobbies.toString());
+        edtFavSport.setText(favSport == null ? "" : favSport.toString());
+
+        btnUpdateInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateUserInfo();
+            }
+        });
+
+        return view;
+    }
+
+    private void updateUserInfo() {
+        ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Updating Info.");
+        progressDialog.show();
+
+        currentUser.put(PROFILE_NAME_KEY, edtProfileName.getText().toString());
+        currentUser.put(PROFILE_BIO_KEY, edtBio.getText().toString());
+        currentUser.put(PROFILE_PROFESSION_KEY, edtProfession.getText().toString());
+        currentUser.put(PROFILE_HOBBIES_KEY, edtHobbies.getText().toString());
+        currentUser.put(PROFILE_FAVSPORT_KEY, edtFavSport.getText().toString());
+
+        currentUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                progressDialog.dismiss();
+                if (e == null) {
+                    FancyToast.makeText(getContext(), "Profile Updated.",
+                            FancyToast.LENGTH_SHORT, FancyToast.SUCCESS,
+                            false).show();
+                } else {
+                    FancyToast.makeText(getContext(), e.getMessage(),
+                            FancyToast.LENGTH_SHORT, FancyToast.ERROR,
+                            false).show();
+                }
+            }
+        });
     }
 }

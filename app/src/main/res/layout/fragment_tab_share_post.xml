@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TabSharePost">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/selectedImage"
+        android:layout_width="0dp"
+        android:layout_height="196dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:src="@drawable/php"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/edtImageCaption"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/caption"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/selectedImage"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/selectedImage"
+        app:layout_constraintTop_toBottomOf="@+id/selectedImage" />
+
+    <Button
+        android:id="@+id/btnPostImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#D0F06292"
+        android:text="@string/post_image"
+        app:layout_constraintEnd_toEndOf="@+id/edtImageCaption"
+        app:layout_constraintStart_toStartOf="@+id/edtImageCaption"
+        app:layout_constraintTop_toBottomOf="@+id/edtImageCaption" />
+</androidx.constraintlayout.widget.ConstraintLayout>

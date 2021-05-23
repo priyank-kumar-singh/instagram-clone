@@ -1,15 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TabProfile">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <EditText
+        android:id="@+id/edtProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="15"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/edtProfileBio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/bio"
+        android:inputType="textShortMessage"
+        app:layout_constraintEnd_toEndOf="@+id/edtProfileName"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/edtProfileName"
+        app:layout_constraintTop_toBottomOf="@+id/edtProfileName" />
+
+    <EditText
+        android:id="@+id/edtProfileProfession"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/profession"
+        android:inputType="textShortMessage|textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edtProfileBio"
+        app:layout_constraintStart_toStartOf="@+id/edtProfileBio"
+        app:layout_constraintTop_toBottomOf="@+id/edtProfileBio" />
+
+    <EditText
+        android:id="@+id/edtProfileHobbies"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/hobbies"
+        android:inputType="textShortMessage|textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edtProfileProfession"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="@+id/edtProfileProfession"
+        app:layout_constraintTop_toBottomOf="@+id/edtProfileProfession" />
+
+    <EditText
+        android:id="@+id/edtProfileFavourite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/favourite_sport"
+        android:inputType="textShortMessage|textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edtProfileHobbies"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtProfileHobbies"
+        app:layout_constraintTop_toBottomOf="@+id/edtProfileHobbies" />
+
+    <Button
+        android:id="@+id/btnProfileUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#F06292"
+        android:text="@string/update_info"
+        app:layout_constraintEnd_toEndOf="@+id/edtProfileFavourite"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/edtProfileFavourite"
+        app:layout_constraintTop_toBottomOf="@+id/edtProfileFavourite" />
 </androidx.constraintlayout.widget.ConstraintLayout>

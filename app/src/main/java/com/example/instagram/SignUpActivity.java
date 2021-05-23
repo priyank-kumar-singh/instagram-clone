@@ -1,7 +1,5 @@
 package com.example.instagram;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +9,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -60,6 +60,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.switchToLogin:
                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.btnSignUp:
                 String name, email, password;
@@ -123,5 +124,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void transitionToHome() {
         Intent intent = new Intent(SignUpActivity.this, SocialMediaActivity.class);
         startActivity(intent);
+        finish();
     }
 }
